@@ -11,8 +11,12 @@ st.set_page_config(
 
 @st.cache_resource
 def get_model():
+
+    local_model_path = '/Users/haoyunou/PycharmProjects/private-models/chatglm3-6b'
     tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm3-6b", trust_remote_code=True)
-    model = AutoModel.from_pretrained("THUDM/chatglm3-6b", trust_remote_code=True).cuda()
+    model = AutoModel.from_pretrained(local_model_path, trust_remote_code=True).to('mps')
+    # tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm3-6b", trust_remote_code=True)
+    # model = AutoModel.from_pretrained("THUDM/chatglm3-6b", trust_remote_code=True).cuda()
     # 多显卡支持，使用下面两行代替上面一行，将num_gpus改为你实际的显卡数量
     # from utils import load_model_on_gpus
     # model = load_model_on_gpus("THUDM/chatglm3-6b", num_gpus=2)
