@@ -116,10 +116,12 @@ async def list_models():
     return ModelList(data=[model_card])
 
 
-@app.post("/v1/chat/completions", response_model=ChatCompletionResponse)
-async def create_chat_completion(request: ChatCompletionRequest):
+# @app.post("/v1/chat/completions", response_model=ChatCompletionResponse)
+# async def create_chat_completion(request: ChatCompletionRequest):
+@app.post("/v1/chat/completions")
+async def create_chat_completion(request):
     global model, tokenizer
-
+    print(request)
     if request.messages[-1].role == "assistant":
         raise HTTPException(status_code=400, detail="Invalid request")
 
