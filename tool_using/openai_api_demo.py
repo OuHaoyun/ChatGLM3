@@ -6,7 +6,7 @@ from loguru import logger
 from tool_register import get_tools, dispatch_tool
 
 openai.api_base = "http://localhost:8000/v1"
-openai.api_key = "xxx"
+openai.api_key = "EMPTY"
 
 
 tools = get_tools()
